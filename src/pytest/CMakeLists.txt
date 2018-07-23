@@ -6,6 +6,7 @@ FOREACH(n ${PY_TEST_FILES})
     ADD_TEST(NAME "PY_${test_name}"
         COMMAND "python" "-m" "unittest" "${test_name}"
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
-    SET_TESTS_PROPERTIES("PY_${test_name}" PROPERTIES ENVIRONMENT
-        "REDIS_MODULE_PATH=$<TARGET_FILE:redisearch>")
+    SET_TESTS_PROPERTIES("PY_${test_name}" PROPERTIES
+        ENVIRONMENT
+        "REDIS_MODULE_PATH=$<TARGET_FILE:redisearch>;EXT_TEST_PATH=$<TARGET_FILE:example_extension>")
 ENDFOREACH()
